@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'fakeadmin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'com.jfoenix:jfoenix:8.0.10'
+
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'fakeadmin.Main'
+    }
+}
