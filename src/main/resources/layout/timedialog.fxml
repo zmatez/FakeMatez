@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="410.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fakeadmin.dialog.time.TimeController">
+    <children>
+        <Label layoutX="27.0" layoutY="14.0" style="-fx-font-family: 'Poppins SemiBold'; -fx-font-size: 22" text="Ustawienia czasu" />
+        <Label fx:id="infoLabel" layoutX="15.0" layoutY="50.0" style="-fx-font-family: 'Poppins Regular'; -fx-font-size: 14;" text="Podaj po jakim czasie program ma się włączyć." />
+      <Label layoutX="15.0" layoutY="85.0" style="-fx-font-family: 'Poppins Medium'; -fx-font-size: 16;" text="Godziny" />
+      <Label layoutX="15.0" layoutY="130.0" style="-fx-font-family: 'Poppins Medium'; -fx-font-size: 16;" text="Minuty" />
+      <Label layoutX="15.0" layoutY="175.0" style="-fx-font-family: 'Poppins Medium'; -fx-font-size: 16;" text="Sekundy" />
+      <JFXTextField fx:id="hoursField" focusColor="#822da1" layoutX="227.0" layoutY="85.0" prefWidth="165" />
+      <JFXTextField fx:id="minutesField" focusColor="#822da1" layoutX="227.0" layoutY="130.0" prefWidth="165" />
+      <JFXTextField fx:id="secondsField" focusColor="#822da1" layoutX="227.0" layoutY="175.0" prefWidth="165" />
+        <!--<Line endX="370.0" layoutX="21.0" layoutY="223.0" stroke="#bbbbbb"/>-->
+        <JFXButton fx:id="saveButton" buttonType="RAISED" layoutX="330.0" layoutY="236.0" ripplerFill="#bc26cb" style="-fx-background-color: #923dcf; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="Zapisz" />
+        <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="14.0" layoutY="236.0" ripplerFill="#bc26cb" style="-fx-background-color: #923dcf; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="Anuluj" />
+    </children>
+</Pane>

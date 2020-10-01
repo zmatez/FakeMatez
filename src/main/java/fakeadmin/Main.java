@@ -34,7 +34,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
 
         controller = (Controller) fxmlLoader.getController();
-        mainStage.setTitle("FakeAdmin --- made by matez");
+        mainStage.setTitle("FakeMatez");
         mainStage.setResizable(false);
 
         mainScene = new Scene(root, 400,570);
@@ -43,6 +43,18 @@ public class Main extends Application {
         mainStage.show();
         LOGGER.success("Started");
     }
+
+    /*ą
+    ą = u0105
+    ę = u0119
+    ś = u015B
+    ć = u0107
+    ł = u0142
+    ń = u0144
+    ó = u00F3
+    Ó = u00D3
+    ż = u017C
+     */
 
     /*
         FXMLLoader fxmlLoader = new FXMLLoader();

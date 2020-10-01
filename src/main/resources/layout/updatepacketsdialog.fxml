@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="410.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fakeadmin.dialog.updatepackets.UpdatePacketsController">
+    <children>
+        <Label layoutX="27.0" layoutY="14.0" style="-fx-font-family: 'Poppins SemiBold'; -fx-font-size: 22" text="Ustawienia pakietów" />
+        <Label layoutX="14.0" layoutY="50.0" prefHeight="50.0" prefWidth="350.0" style="-fx-font-family: 'Poppins Regular'; -fx-font-size: 14;" text="Dodaj pakiety które chcesz, żeby były &quot;instalowane&quot; podczas aktualizacji. (opcjonalne)" wrapText="true" />
+        <JFXButton fx:id="saveButton" buttonType="RAISED" layoutX="330.0" layoutY="236.0" ripplerFill="#bc26cb" style="-fx-background-color: #923dcf; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="Zapisz" />
+        <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="14.0" layoutY="236.0" ripplerFill="#bc26cb" style="-fx-background-color: #923dcf; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="Anuluj" />
+      <JFXListView fx:id="packetView" layoutX="14.0" layoutY="100.0" prefHeight="130.0" prefWidth="335.0" />
+      <JFXButton fx:id="addButton" buttonType="RAISED" layoutX="361.0" layoutY="100.0" prefHeight="32.0" prefWidth="32.0" ripplerFill="#bc26cb" style="-fx-background-color: #693dcf; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="+" />
+      <JFXButton fx:id="removeButton" buttonType="RAISED" layoutX="361.0" layoutY="148" prefHeight="32.0" prefWidth="32.0" ripplerFill="#bc26cb" style="-fx-background-color: #693DCF; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="-" />
+      <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="361.0" layoutY="196.0" prefHeight="32.0" prefWidth="32.0" ripplerFill="#bc26cb" style="-fx-background-color: #693DCF; -fx-text-fill: white; -fx-font-smoothing-type: gray; -fx-font-family: 'Poppins Medium'; -fx-font-size: 15" text="&lt;" />
+    </children>
+</Pane>
