@@ -40,6 +40,10 @@ public class Main extends Application {
         mainScene = new Scene(root, 400,570);
         mainScene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
         mainStage.setScene(mainScene);
+        mainStage.setOnCloseRequest(close -> {
+            LOGGER.log("Closing app");
+            System.exit(0);
+        });
         mainStage.show();
         LOGGER.success("Started");
     }

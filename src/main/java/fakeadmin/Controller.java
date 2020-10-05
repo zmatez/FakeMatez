@@ -6,6 +6,7 @@ import fakeadmin.dialog.updatepackets.UpdatePacketsConfiguration;
 import fakeadmin.dialog.updatetexts.UpdateTextsConfiguration;
 import fakeadmin.fakes.fakeUpdate.FakeUpdate;
 import fakeadmin.utils.AlertUtils;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -82,6 +83,8 @@ public class Controller {
 
     private javax.swing.Timer planTimer;
     private void planStart(TimeConfiguration configuration){
+        Platform.setImplicitExit(false);
+        Main.mainStage.hide();
         Main.LOGGER.log("Planned start for " + configuration.getHours() + ":" + configuration.getMinutes() + ":" + configuration.getSeconds());
 
         if(configuration.getAllAsSeconds() <=0){
@@ -101,10 +104,16 @@ public class Controller {
     }
 
     private void start(){
-        Main.LOGGER.log("Starting fakes");
-        if(tabPane.getSelectionModel().isSelected(0)){
-            FakeUpdate.run(updateColorPicker.getValue(),updateTextsConfiguration,updatePacketsConfiguration,updateNotifyButton.isSelected(),Integer.parseInt(updatePercentageField.getText()));
-        }
+        Platform.runLater(() -> {
+            Platform.setImplicitExit(false);
+            Main.mainStage.hide();
+            Main.LOGGER.log("Starting fakes");
+
+            if(tabPane.getSelectionModel().isSelected(0)){
+                FakeUpdate.run(updateColorPicker.getValue(),updateTextsConfiguration,updatePacketsConfiguration,updateNotifyButton.isSelected(),Integer.parseInt(updatePercentageField.getText()));
+            }
+        });
+
     }
 
     //UPDATE
