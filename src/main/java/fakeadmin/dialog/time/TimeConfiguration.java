@@ -47,7 +47,7 @@ public class TimeConfiguration {
     }
 
     public int getAllAsSeconds(){
-        return (hours / 3600) + (minutes / 60) + seconds;
+        return (hours * 3600) + (minutes * 60) + seconds;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class TimeConfiguration {
         if(seconds!=0){
             s = getValidSuffix("sekund",seconds,toWork);
         }
-        return h + (!h.isEmpty() && (s.isEmpty() && !m.isEmpty()) ? "i " : (m.isEmpty() ? "" : ", ")) + m + ((!h.isEmpty() || !m.isEmpty()) && !s.isEmpty() ? "i " : (s.isEmpty() ? "" : ", ")) + s;
+        return h + (!h.isEmpty() && (s.isEmpty() && !m.isEmpty()) ? "i " : (m.isEmpty() ? "" : h.isEmpty() ? "" : ", ")) + m + ((!h.isEmpty() || !m.isEmpty()) && !s.isEmpty() ? "i " : (s.isEmpty() ? "" : ", ")) + s;
     }
 
     private String getValidSuffix(String prefix, int time, boolean toWork){

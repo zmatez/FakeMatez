@@ -1,9 +1,10 @@
 package fakeadmin.fakes.fakeUpdate;
 
-import fakeadmin.Controller;
 import fakeadmin.Main;
+import fakeadmin.dialog.time.TimeConfiguration;
 import fakeadmin.dialog.updatepackets.UpdatePacketsConfiguration;
 import fakeadmin.dialog.updatetexts.UpdateTextsConfiguration;
+import fakeadmin.utils.Utils;
 import fakeadmin.utils.Wait;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -20,19 +21,20 @@ import java.awt.*;
 import java.io.IOException;
 
 public class FakeUpdate {
-    public static void run(Color backgroundColor, UpdateTextsConfiguration updateTextsConfiguration, UpdatePacketsConfiguration updatePacketsConfiguration, boolean notification, int maxPercentage){
+    public static void run(Color backgroundColor, TimeConfiguration updateTimeConfiguration, UpdateTextsConfiguration updateTextsConfiguration, UpdatePacketsConfiguration updatePacketsConfiguration, boolean notification, int maxPercentage, boolean shouldLaunchAndWait) {
         Main.LOGGER.log("Running FakeUpdate");
         displayNotification(notification, e1 -> {
-            Main.LOGGER.debug("Showing fake update");
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(FakeUpdate.class.getResource("/layout/restartlayout.fxml"));
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                double w = screenSize.getWidth();
+                double h = screenSize.getHeight();
                 Parent root = fxmlLoader.load();
                 FakeUpdateController controller = (FakeUpdateController) fxmlLoader.getController();
 
-                Main.mainStage.setTitle("Windows Update");
                 Main.mainStage.setResizable(false);
-                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                Main.mainScene = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
+
+                Main.mainScene = new Scene(root, w, h);
                 Main.mainScene.getStylesheets().add(FakeUpdate.class.getResource("/css/stylesheet.css").toExternalForm());
                 Main.mainStage.setScene(Main.mainScene);
                 Main.mainStage.centerOnScreen();
@@ -40,29 +42,30 @@ public class FakeUpdate {
                 Main.mainStage.setFullScreenExitKeyCombination(new KeyCombination() {
                     @Override
                     public boolean match(KeyEvent event) {
-                        if(event.isControlDown()){
-                            if(event.isAltDown()){
-                                if(event.getCode() == KeyCode.Q){
-                                    return true;
-                                }
-                            }
-                        }
                         return false;
                     }
                 });
 
+                Utils.addQuitHandler();
+
                 Main.mainStage.setFullScreen(true);
+                controller.start();
                 Main.mainStage.show();
-                Main.LOGGER.debug("Showed");
                 controller.init(backgroundColor);
-            }catch (IOException e){
+
+                new Wait(5000, true, a -> {
+                    Platform.runLater(() -> {
+                        controller.update(updateTimeConfiguration,updateTextsConfiguration,updatePacketsConfiguration,maxPercentage);
+                    });
+                });
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    private static void displayNotification(boolean shouldDisplay, EventHandler<ActionEvent> nextOperationHandler){
-        if(shouldDisplay) {
+    private static void displayNotification(boolean shouldDisplay, EventHandler<ActionEvent> nextOperationHandler) {
+        if (shouldDisplay) {
             try {
                 SystemTray tray = SystemTray.getSystemTray();
 
@@ -74,7 +77,7 @@ public class FakeUpdate {
                 tray.add(trayIcon);
 
                 trayIcon.displayMessage("Wymagana aktualizacja", "Za chwilę komputer zostanie zaaktualizowany.", TrayIcon.MessageType.INFO);
-                Wait w = new Wait(7000,true,a -> {
+                Wait w = new Wait(7000, true, a -> {
                     Main.LOGGER.debug("Notification hidden");
 
                     Platform.runLater(new Runnable() {
@@ -92,7 +95,7 @@ public class FakeUpdate {
             } catch (AWTException e) {
 
             }
-        }else{
+        } else {
             nextOperationHandler.handle(new ActionEvent());
         }
     }

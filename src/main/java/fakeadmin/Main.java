@@ -41,11 +41,16 @@ public class Main extends Application {
         mainScene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
         mainStage.setScene(mainScene);
         mainStage.setOnCloseRequest(close -> {
-            LOGGER.log("Closing app");
-            System.exit(0);
+            close();
         });
         mainStage.show();
         LOGGER.success("Started");
+    }
+
+
+    public static void close(){
+        LOGGER.log("Closing app");
+        System.exit(0);
     }
 
     /*ą

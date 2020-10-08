@@ -112,7 +112,7 @@ public class AlertUtils {
         layout.setActions(cancelButton,confirmButton);
         alert.setContent(layout);
         alert.showAndWait();
-        return alert.getResult();
+        return (Object)alert.getResult() instanceof ButtonType ? Optional.empty() : alert.getResult();
     }
 
     public static boolean showBooleanConfirmAlert(String header, String body, EventHandler<ActionEvent> cancel, EventHandler<ActionEvent> action){
@@ -148,7 +148,7 @@ public class AlertUtils {
         layout.setActions(cancelButton,confirmButton);
         alert.setContent(layout);
         alert.showAndWait();
-        return alert.getResult();
+        return (Object)alert.getResult() instanceof ButtonType ? false : alert.getResult();
     }
 
     public static Optional<TimeConfiguration> showTimeAlert(String info){

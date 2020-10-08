@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <?import javafx.scene.layout.Pane?>
-
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="410.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fakeadmin.fakes.fakeUpdate.FakeUpdateController">
-    <children>
-
-    </children>
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #000000; -fx-alignment: center" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fakeadmin.fakes.fakeUpdate.FakeUpdateController">
+   <VBox fx:id="vbox" style="-fx-alignment: center">
+      <ImageView fx:id="imageView" fitHeight="135.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="textLabel" style="-fx-text-fill: white; -fx-text-alignment: center">
+         <font>
+            <Font name="Segoe UI" size="23.0"/>
+         </font></Label>
+   </VBox>
 </Pane>

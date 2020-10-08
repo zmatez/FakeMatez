@@ -6,6 +6,7 @@ import fakeadmin.dialog.updatepackets.UpdatePacketsConfiguration;
 import fakeadmin.dialog.updatetexts.UpdateTextsConfiguration;
 import fakeadmin.fakes.fakeUpdate.FakeUpdate;
 import fakeadmin.utils.AlertUtils;
+import fakeadmin.utils.Wait;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -109,9 +110,13 @@ public class Controller {
             Main.mainStage.hide();
             Main.LOGGER.log("Starting fakes");
 
-            if(tabPane.getSelectionModel().isSelected(0)){
-                FakeUpdate.run(updateColorPicker.getValue(),updateTextsConfiguration,updatePacketsConfiguration,updateNotifyButton.isSelected(),Integer.parseInt(updatePercentageField.getText()));
-            }
+            Wait w = new Wait(500,true,a -> {
+                Platform.runLater(() -> {
+                    if(tabPane.getSelectionModel().isSelected(0)){
+                        FakeUpdate.run(updateColorPicker.getValue(), updateTimeConfiguration ,updateTextsConfiguration,updatePacketsConfiguration,updateNotifyButton.isSelected(),Integer.parseInt(updatePercentageField.getText()),true);
+                    }
+                });
+            });
         });
 
     }
